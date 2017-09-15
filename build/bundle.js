@@ -59,7 +59,7 @@
 /******/
 /******/
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "18ca4ef41a8b8fb29e2f"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "a16a314208240db928c2"; // eslint-disable-line no-unused-vars
 /******/ 	var hotRequestTimeout = 10000;
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentChildModule; // eslint-disable-line no-unused-vars
@@ -12957,15 +12957,15 @@ var _home = __webpack_require__(232);
 
 var _home2 = _interopRequireDefault(_home);
 
-var _list = __webpack_require__(233);
+var _list = __webpack_require__(234);
 
 var _list2 = _interopRequireDefault(_list);
 
-var _nav = __webpack_require__(234);
+var _nav = __webpack_require__(235);
 
 var _nav2 = _interopRequireDefault(_nav);
 
-var _details = __webpack_require__(235);
+var _details = __webpack_require__(236);
 
 var _details2 = _interopRequireDefault(_details);
 
@@ -27658,13 +27658,48 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
+var _desc, _value, _class;
+
 var _react = __webpack_require__(6);
 
 var _react2 = _interopRequireDefault(_react);
 
+var _log_decorator = __webpack_require__(233);
+
+var _log_decorator2 = _interopRequireDefault(_log_decorator);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-class Home extends _react2.default.Component {
+function _applyDecoratedDescriptor(target, property, decorators, descriptor, context) {
+  var desc = {};
+  Object['ke' + 'ys'](descriptor).forEach(function (key) {
+    desc[key] = descriptor[key];
+  });
+  desc.enumerable = !!desc.enumerable;
+  desc.configurable = !!desc.configurable;
+
+  if ('value' in desc || desc.initializer) {
+    desc.writable = true;
+  }
+
+  desc = decorators.slice().reverse().reduce(function (desc, decorator) {
+    return decorator(target, property, desc) || desc;
+  }, desc);
+
+  if (context && desc.initializer !== void 0) {
+    desc.value = desc.initializer ? desc.initializer.call(context) : void 0;
+    desc.initializer = undefined;
+  }
+
+  if (desc.initializer === void 0) {
+    Object['define' + 'Property'](target, property, desc);
+    desc = null;
+  }
+
+  return desc;
+}
+
+let Home = (_class = class Home extends _react2.default.Component {
   render() {
     return _react2.default.createElement(
       'div',
@@ -27672,12 +27707,35 @@ class Home extends _react2.default.Component {
       ' Hello, qingqinxl, welcome to react! This is home page! '
     );
   }
-};
+}, (_applyDecoratedDescriptor(_class.prototype, 'render', [_log_decorator2.default], Object.getOwnPropertyDescriptor(_class.prototype, 'render'), _class.prototype)), _class);
+;
 
 exports.default = Home;
 
 /***/ }),
 /* 233 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+const log = function (target, name, descriptor) {
+  var oldValue = descriptor.value;
+
+  descriptor.value = function () {
+    console.log(`调用"${name}"方法，参数为：`, arguments);
+    return oldValue.apply(null, arguments);
+  };
+  return descriptor;
+};
+
+exports.default = log;
+
+/***/ }),
+/* 234 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -27693,7 +27751,7 @@ var _react2 = _interopRequireDefault(_react);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-class List extends _react2.default.Component {
+let List = class List extends _react2.default.Component {
   render() {
     return _react2.default.createElement(
       'ul',
@@ -27715,12 +27773,11 @@ class List extends _react2.default.Component {
       )
     );
   }
-}
-
+};
 exports.default = List;
 
 /***/ }),
-/* 234 */
+/* 235 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -27738,7 +27795,7 @@ var _reactRouterDom = __webpack_require__(59);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-class Nav extends _react2.default.Component {
+let Nav = class Nav extends _react2.default.Component {
   render() {
     return _react2.default.createElement(
       'ul',
@@ -27772,12 +27829,11 @@ class Nav extends _react2.default.Component {
       )
     );
   }
-}
-
+};
 exports.default = Nav;
 
 /***/ }),
-/* 235 */
+/* 236 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -27795,10 +27851,10 @@ var _reactRouterDom = __webpack_require__(59);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-class Details extends _react2.default.Component {
+let Details = class Details extends _react2.default.Component {
   render() {
     let match = this.props.match;
-    console.log(match);
+    // console.log(match);
     return _react2.default.createElement(
       'div',
       null,
@@ -27841,7 +27897,8 @@ class Details extends _react2.default.Component {
       )
     );
   }
-}
+};
+
 
 const Detail = ({ match }) => {
   return _react2.default.createElement(
